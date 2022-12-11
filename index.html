@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-container {
+            border: 2px solid black;
+            width: 60vw;
+            height: 60vh;
+            margin-top: 5%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .heading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+        }
+
+        .name-container {
+            width: 60%;
+            height: 15%;
+            display: flex;
+            justify-content: space-between;
+            gap: 5%;
+            align-items: center;
+            margin-top: 1.5%;
+        }
+
+        .input {
+            width: 50%;
+            height: 50%;
+            padding: 5px;
+            font-size: 15px;
+        }
+
+        .button {
+            width: 60%;
+            height: 15%;
+            display: flex;
+            align-items: center;
+        }
+
+        button {
+            width: 20%;
+            height: 60%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="heading">
+            <h1>Create Your Account</h1>
+        </div>
+        <div class="name-container">
+            <h3>Name</h3>
+            <input type="text" class="input" id="input-name" placeholder="Enter your name">
+        </div>
+        <div>
+            <p id="demo_name"></p>
+        </div>
+
+        <div class="name-container">
+            <h3>Email</h3>
+            <input type="text" class="input" id="input-email" placeholder="Enter your Email Id">
+        </div>
+
+        <div class="name-container">
+            <h3>Set Password</h3>
+            <input type="text" class="input" id="input-password" placeholder="Set a Password">
+        </div>
+
+        <div class="name-container">
+            <h3>Confirm Password</h3>
+            <input type="text" class="input" id="input-confirm-password" placeholder="Confirm your Password">
+        </div>
+        <div class="button">
+            <button>Create</button>
+        </div>
+
+    </div>
+
+
+    <script>
+        const name_input = document.getElementById("input-name");
+        const email_input = document.getElementById("input-email");
+        const password_input = document.getElementById("input-password");
+        const confirm_password_input = document.getElementById("input-confirm-password");
+        const button = document.getElementsByTagName("button")[0];
+        button.addEventListener("click", validateform);
+
+        function validateform() {
+            var name = name_input.value;
+            var email = email_input.value;
+            var password = password_input.value;
+            var confirm_password = confirm_password_input.value;
+            let nameCopy = name.toLowerCase();
+            let i;
+
+            if ( !(nameCopy.length >= 3 && nameCopy.length <= 16) || !(nameCopy.charCodeAt(i) >= 97 && nameCopy.charCodeAt(i) <= 122) ) {
+                alert("Please enter the proper name..!!");
+                return false;
+            } else if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+                alert("Please enter the email in proper format..!!");
+                return false;
+            }else if(!((/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/).test(password))){
+                alert("Please enter proper password")
+                return false;
+            }else if(password !== confirm_password){
+                alert("Password is not matching..!!");
+            }else{
+                alert("Your form is Succesfully 😇");
+            }
+        }
+
+    </script>
+</body>
+
+</html>
